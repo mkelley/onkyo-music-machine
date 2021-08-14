@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: Onkyo Music Machine
+  version: 0.1.0
+paths:
+  /status:
+    get:
+      operationId: omm.services.status
+      summary: Get current status.
+      responses:
+        '200':
+          description: OK
+  /power/{state}:
+    get:
+      operationId: omm.services.power
+      summary: Set power state.
+      parameters:
+        - name: state
+          in: path
+          required: true
+          description: "Power state: on|off"
+          schema:
+            type: string
+            enum: ["on", "off"]
+      responses: 
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  power:
+                    type: string
+                    description: Power status.
+# 
+# paths:
+#   /power:
+#     get:
+#       responses:
+#         "200":
+#           description: Get power state.
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   state:
+#                     type: string
+#                     description: Power state.
+#                     schema:
+#                       type: string
+#                       enum: ["on", "off", unknown]
+#   /power/{state}:
+#     get:
+#       parameters:
+#         - name: state
+#           in: path
+#           schema:
+#             type: string
+#             enum: ["on", "off"]
+#       responses:
+#         "200":
+#           description: Set power state.
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   message:
+#                     type: string
+#                     description: Text message for the user.
+# 
